@@ -5,31 +5,28 @@
 }
 
 :root {
-    --primary: #1d6ef2;
-    --primary-strong: #0d4fcf;
-    --primary-soft: #ebf4ff;
-    --danger: #ff4d6d;
-    --danger-dark: #e5395b;
-    --success: #19b37c;
-    --warning: #f6b73c;
-    --secondary: #64748b;
-    --border: #dfeaf5;
-    --text: #182235;
-    --muted: #607089;
+    --primary: #2563eb;
+    --primary-strong: #1d4ed8;
+    --primary-soft: #eff6ff;
+    --danger: #dc3545;
+    --danger-dark: #b02a37;
+    --success: #198754;
+    --warning: #d39e00;
+    --secondary: #6c757d;
+    --border: #dee2e6;
+    --text: #212529;
+    --muted: #6c757d;
     --surface: #ffffff;
-    --surface-soft: #f7faff;
-    --shadow-soft: 0 18px 40px rgba(20, 51, 93, 0.12);
-    --radius: 18px;
+    --surface-soft: #f8f9fa;
+    --shadow-soft: 0 8px 24px rgba(33, 37, 41, 0.08);
+    --radius: 12px;
 }
 
 body {
     min-height: 100vh;
     font-family: "Segoe UI", Arial, sans-serif;
     color: var(--text);
-    background:
-        radial-gradient(circle at top left, rgba(29, 110, 242, 0.16), transparent 24%),
-        radial-gradient(circle at bottom right, rgba(25, 179, 124, 0.12), transparent 28%),
-        linear-gradient(180deg, #edf5ff 0%, #f7fafe 100%);
+    background: #f4f6f9;
 }
 
 button,
@@ -56,8 +53,8 @@ select {
     align-items: center;
     justify-content: space-between;
     color: white;
-    background: linear-gradient(135deg, #0d2f59 0%, #124e8d 38%, #1d6ef2 100%);
-    box-shadow: 0 12px 30px rgba(17, 47, 86, 0.22);
+    background: #174a84;
+    box-shadow: 0 4px 12px rgba(23, 74, 132, 0.18);
 }
 
 .brand {
@@ -66,9 +63,8 @@ select {
     gap: 12px;
     color: white;
     text-decoration: none;
-    font-size: 1.7rem;
-    font-weight: 700;
-    letter-spacing: -0.03em;
+    font-size: 1.35rem;
+    font-weight: 600;
 }
 
 .brand i {
@@ -101,8 +97,6 @@ select {
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.12);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 20px rgba(8, 28, 52, 0.15);
-    backdrop-filter: blur(4px);
 }
 
 .status-dot {
@@ -150,20 +144,18 @@ select {
 }
 
 .card {
-    background: rgba(255, 255, 255, 0.96);
-    border: 1px solid rgba(172, 191, 215, 0.4);
+    background: var(--surface);
+    border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: 28px;
     box-shadow: var(--shadow-soft);
-    backdrop-filter: blur(2px);
 }
 
 .card h2 {
     margin-bottom: 24px;
-    font-size: clamp(1.7rem, 2vw, 2.3rem);
-    font-weight: 800;
-    letter-spacing: -0.035em;
-    color: #142d4d;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #1f3b5b;
 }
 
 .form-card h2 {
@@ -187,10 +179,10 @@ select {
     width: 100%;
     height: 50px;
     padding: 0 16px;
-    border: 1.5px solid var(--border);
-    border-radius: 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
     outline: none;
-    background: linear-gradient(180deg, #fbfdff, #f3f8ff);
+    background: #fff;
     color: var(--text);
     font-size: 1rem;
     transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
@@ -213,7 +205,7 @@ select {
     min-height: 46px;
     padding: 0 18px;
     border: 0;
-    border-radius: 12px;
+    border-radius: 8px;
     color: white;
     font-weight: 700;
     cursor: pointer;
@@ -221,7 +213,7 @@ select {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    box-shadow: 0 10px 18px rgba(21, 53, 92, 0.12);
+    box-shadow: none;
     transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
 }
 
@@ -231,16 +223,16 @@ select {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-strong) 100%);
+    background: var(--primary);
     flex: 1;
 }
 
 .btn-secondary {
-    background: linear-gradient(135deg, #7a8aa5 0%, var(--secondary) 100%);
+    background: var(--secondary);
 }
 
 .btn-danger {
-    background: linear-gradient(135deg, #ff6b84 0%, var(--danger) 100%);
+    background: var(--danger);
 }
 
 .form-message {
@@ -266,10 +258,10 @@ select {
 
 .stat-item {
     padding: 16px 14px;
-    background: linear-gradient(135deg, #f9fbff 0%, #edf5ff 100%);
+    background: #f8f9fa;
     border: 1px solid var(--border);
     border-radius: 14px;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.9);
+    box-shadow: none;
 }
 
 .stat-item strong {
@@ -324,7 +316,7 @@ select {
 
 .search-box button {
     width: 52px;
-    background: linear-gradient(135deg, #1d6ef2, #0f4fae);
+    background: var(--primary);
     border: none;
     border-left: 1px solid rgba(255, 255, 255, 0.18);
     cursor: pointer;
@@ -360,7 +352,7 @@ th, td {
 
 th {
     color: white;
-    background: linear-gradient(135deg, #1d6ef2 0%, #0d5bd6 100%);
+    background: var(--primary);
     font-weight: 700;
     font-size: 0.98rem;
 }
@@ -428,11 +420,11 @@ tbody tr:hover {
 }
 
 .edit {
-    background: linear-gradient(135deg, #1d6ef2 0%, #1d86ff 100%);
+    background: var(--primary);
 }
 
 .delete {
-    background: linear-gradient(135deg, #ff6b84 0%, #f52f3d 100%);
+    background: var(--danger);
 }
 
 .table-footer {
@@ -473,7 +465,7 @@ tbody tr:hover {
 .pagination button:last-child { border-radius: 0 8px 8px 0; }
 
 .pagination .active {
-    background: linear-gradient(135deg, #1d6ef2, #0f4fae);
+    background: var(--primary);
     border-color: var(--primary);
     color: white;
     box-shadow: 0 8px 14px rgba(29, 110, 242, 0.18);
