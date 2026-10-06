@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="navbar">
+        <a href="#" class="brand">
+            <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+            <span>Student Management</span>
+        </a>
+        <nav class="nav-menu" aria-label="Menu utama">
+            <a href="#">Home</a>
+            <a href="#">Students</a>
+            <a href="#">About</a>
+            <div class="profile-chip" aria-label="Profil pengguna">
+                <div class="status-dot" aria-hidden="true"></div>
+                <span class="avatar"><i class="fa-solid fa-circle-user" aria-hidden="true"></i></span>
+                <span class="profile-name">Admin</span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1 class="sr-only">Student Management</h1>
+        <section class="card form-card">
+            <h2>Form Student</h2>
+            <form id="student-form">
+                <div class="form-group">
+                    <label for="nim">NIM</label>
+                    <input type="text" id="nim" name="nim" placeholder="Masukkan NIM" required>
+                </div>
+                <div class="form-group">
+                    <label for="nama">Nama Lengkap</label>
+                    <input type="text" id="nama" name="nama" placeholder="Masukkan nama lengkap" required>
+                </div>
+                <div class="form-group">
+                    <label for="jurusan">Jurusan</label>
+                    <select id="jurusan" name="jurusan" required>
+                        <option value="" disabled selected>Pilih Jurusan</option>
+                        <option>Informatika</option>
+                        <option>Sistem Informasi</option>
+                        <option>Teknik Komputer</option>
+                        <option>Manajemen</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Masukkan email" required>
+                </div>
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <select id="status" name="status" required>
+                        <option value="" disabled selected>Pilih Status</option>
+                        <option>Aktif</option>
+                        <option>Cuti</option>
+                        <option>Alumni</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk" aria-hidden="true"></i> Simpan</button>
+                    <button type="button" class="btn btn-secondary" id="btn-batal"><i class="fa-solid fa-ban" aria-hidden="true"></i> Batal</button>
+                    <button type="reset" class="btn btn-danger"><i class="fa-solid fa-rotate" aria-hidden="true"></i> Reset</button>
+                </div>
+                <div id="form-message" class="form-message" aria-live="polite"></div>
+            </form>
+        </section>
+
+        <section class="card table-card">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-label">Total</span>
+                    <strong id="total-students">0</strong>
+                </div>
+                <div class="stat-item accent-blue">
+                    <span class="stat-label">Aktif</span>
+                    <strong id="active-students">0</strong>
+                </div>
+                <div class="stat-item accent-green">
+                    <span class="stat-label">Cuti</span>
+                    <strong id="leave-students">0</strong>
+                </div>
+                <div class="stat-item accent-purple">
+                    <span class="stat-label">Alumni</span>
+                    <strong id="alumni-students">0</strong>
+                </div>
+            </div>
+
+            <div class="table-header">
+                <h2>Data Mahasiswa</h2>
+                <div class="search-box" role="search">
+                    <input type="search" id="search" placeholder="Cari mahasiswa..." aria-label="Cari mahasiswa">
+                    <button type="button" id="btn-search" aria-label="Cari"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button>
+                </div>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">NIM</th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Jurusan</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="student-body">
+                        <tr data-index="0">
+                            <td>1</td>
+                            <td>231001</td>
+                            <td>Andi Pratama</td>
+                            <td>Informatika</td>
+                            <td>andi@mail.com</td>
+                            <td><span class="status-badge badge-active">Aktif</span></td>
+                            <td>
+                                <div class="actions">
+                                    <button type="button" class="action edit" data-action="edit" aria-label="Edit Andi Pratama"><i class="fa-solid fa-pen" aria-hidden="true"></i></button>
+                                    <button type="button" class="action delete" data-action="delete" aria-label="Hapus Andi Pratama"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr data-index="1">
+                            <td>2</td>
+                            <td>231002</td>
+                            <td>Siti Aisyah</td>
+                            <td>Sistem Informasi</td>
+                            <td>siti@mail.com</td>
+                            <td><span class="status-badge badge-active">Aktif</span></td>
+                            <td>
+                                <div class="actions">
+                                    <button type="button" class="action edit" data-action="edit" aria-label="Edit Siti Aisyah"><i class="fa-solid fa-pen" aria-hidden="true"></i></button>
+                                    <button type="button" class="action delete" data-action="delete" aria-label="Hapus Siti Aisyah"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr data-index="2">
+                            <td>3</td>
+                            <td>231003</td>
+                            <td>Budi Santoso</td>
+                            <td>Teknik Komputer</td>
+                            <td>budi@mail.com</td>
+                            <td><span class="status-badge badge-leave">Cuti</span></td>
+                            <td>
+                                <div class="actions">
+                                    <button type="button" class="action edit" data-action="edit" aria-label="Edit Budi Santoso"><i class="fa-solid fa-pen" aria-hidden="true"></i></button>
+                                    <button type="button" class="action delete" data-action="delete" aria-label="Hapus Budi Santoso"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr data-index="3">
+                            <td>4</td>
+                            <td>231004</td>
+                            <td>Nina Marlina</td>
+                            <td>Manajemen</td>
+                            <td>nina@mail.com</td>
+                            <td><span class="status-badge badge-alumni">Alumni</span></td>
+                            <td>
+                                <div class="actions">
+                                    <button type="button" class="action edit" data-action="edit" aria-label="Edit Nina Marlina"><i class="fa-solid fa-pen" aria-hidden="true"></i></button>
+                                    <button type="button" class="action delete" data-action="delete" aria-label="Hapus Nina Marlina"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr data-index="4">
+                            <td>5</td>
+                            <td>231005</td>
+                            <td>Rizky Pratama</td>
+                            <td>Informatika</td>
+                            <td>rizky@mail.com</td>
+                            <td><span class="status-badge badge-active">Aktif</span></td>
+                            <td>
+                                <div class="actions">
+                                    <button type="button" class="action edit" data-action="edit" aria-label="Edit Rizky Pratama"><i class="fa-solid fa-pen" aria-hidden="true"></i></button>
+                                    <button type="button" class="action delete" data-action="delete" aria-label="Hapus Rizky Pratama"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr data-index="5">
+                            <td>6</td>
+                            <td>231006</td>
+                            <td>Rina Wijaya</td>
+                            <td>Sistem Informasi</td>
+                            <td>rina@mail.com</td>
+                            <td><span class="status-badge badge-active">Aktif</span></td>
+                            <td>
+                                <div class="actions">
+                                    <button type="button" class="action edit" data-action="edit" aria-label="Edit Rina Wijaya"><i class="fa-solid fa-pen" aria-hidden="true"></i></button>
+                                    <button type="button" class="action delete" data-action="delete" aria-label="Hapus Rina Wijaya"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr data-index="6">
+                            <td>7</td>
+                            <td>231007</td>
+                            <td>Fajar Nugroho</td>
+                            <td>Teknik Komputer</td>
+                            <td>fajar@mail.com</td>
+                            <td><span class="status-badge badge-leave">Cuti</span></td>
+                            <td>
+                                <div class="actions">
+                                    <button type="button" class="action edit" data-action="edit" aria-label="Edit Fajar Nugroho"><i class="fa-solid fa-pen" aria-hidden="true"></i></button>
+                                    <button type="button" class="action delete" data-action="delete" aria-label="Hapus Fajar Nugroho"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="table-footer">
+                <p class="table-info">Menampilkan <span id="visible-count">0</span> data mahasiswa</p>
+                <nav class="pagination" aria-label="Pagination">
+                    <button type="button" aria-label="Sebelumnya">&laquo;</button>
+                    <button type="button" class="active" aria-current="page">1</button>
+                    <button type="button">2</button>
+                    <button type="button">3</button>
+                    <button type="button" aria-label="Berikutnya">&raquo;</button>
+                </nav>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const form = document.getElementById('student-form');
+        const studentBody = document.getElementById('student-body');
+        const searchInput = document.getElementById('search');
+        const btnSearch = document.getElementById('btn-search');
+        const btnBatal = document.getElementById('btn-batal');
+        const formMessage = document.getElementById('form-message');
+
+        let editingIndex = null;
+
+        function getStudents() {
+            return Array.from(studentBody.querySelectorAll('tr')).map((row, index) => {
+                const cells = row.querySelectorAll('td');
+                return {
+                    nim: cells[1].textContent.trim(),
+                    nama: cells[2].textContent.trim(),
+                    jurusan: cells[3].textContent.trim(),
+                    email: cells[4].textContent.trim(),
+                    status: cells[5].querySelector('.status-badge').textContent.trim(),
+                    index
+                };
+            });
+        }
+
+        function getStatusClass(status) {
+            switch (status) {
+                case 'Aktif':
+                    return 'badge-active';
+                case 'Cuti':
+                    return 'badge-leave';
+                case 'Alumni':
+                    return 'badge-alumni';
+                default:
+                    return 'badge-active';
+            }
+        }
+
+        function updateStats() {
+            const rows = studentBody.querySelectorAll('tr');
+            const total = rows.length;
+            const aktif = Array.from(rows).filter((row) => row.querySelector('.status-badge')?.textContent.trim() === 'Aktif').length;
+            const cuti = Array.from(rows).filter((row) => row.querySelector('.status-badge')?.textContent.trim() === 'Cuti').length;
+            const alumni = Array.from(rows).filter((row) => row.querySelector('.status-badge')?.textContent.trim() === 'Alumni').length;
+
+            document.getElementById('total-students').textContent = total;
+            document.getElementById('active-students').textContent = aktif;
+            document.getElementById('leave-students').textContent = cuti;
+            document.getElementById('alumni-students').textContent = alumni;
+            document.getElementById('visible-count').textContent = total;
+        }
+
+        function renderTable(filterText = '') {
+            const rows = studentBody.querySelectorAll('tr');
+            let visible = 0;
+            rows.forEach((row) => {
+                const nim = row.cells[1].textContent.toLowerCase();
+                const nama = row.cells[2].textContent.toLowerCase();
+                const jurusan = row.cells[3].textContent.toLowerCase();
+                const email = row.cells[4].textContent.toLowerCase();
+                const keyword = filterText.toLowerCase();
+                const match = !keyword || nim.includes(keyword) || nama.includes(keyword) || jurusan.includes(keyword) || email.includes(keyword);
+                row.style.display = match ? '' : 'none';
+                if (match) visible++;
+            });
+            document.getElementById('visible-count').textContent = visible;
+        }
+
+        function resetForm(message = '') {
+            form.reset();
+            editingIndex = null;
+            form.querySelector('button[type="submit"]').innerHTML = '<i class="fa-solid fa-floppy-disk" aria-hidden="true"></i> Simpan';
+            formMessage.textContent = message;
+            formMessage.classList.toggle('show', Boolean(message));
+        }
+
+        function refreshRowIndexes() {
+            Array.from(studentBody.querySelectorAll('tr')).forEach((row, index) => {
+                row.dataset.index = index;
+                row.cells[0].textContent = index + 1;
+            });
+        }
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const nim = document.getElementById('nim').value.trim();
+            const nama = document.getElementById('nama').value.trim();
+            const jurusan = document.getElementById('jurusan').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const status = document.getElementById('status').value.trim();
+
+            if (!nim || !nama || !jurusan || !email || !status) {
+                formMessage.textContent = 'Semua field harus diisi.';
+                formMessage.classList.add('show');
+                return;
+            }
+
+            const rowIndex = editingIndex !== null ? editingIndex : studentBody.querySelectorAll('tr').length;
+            const row = studentBody.querySelectorAll('tr')[rowIndex] || document.createElement('tr');
+            const statusBadge = document.createElement('span');
+            statusBadge.className = `status-badge ${getStatusClass(status)}`;
+            statusBadge.textContent = status;
+
+            if (editingIndex !== null) {
+                row.innerHTML = `
+                    <td>${editingIndex + 1}</td>
+                    <td>${nim}</td>
+                    <td>${nama}</td>
+                    <td>${jurusan}</td>
+                    <td>${email}</td>
+                    <td>${statusBadge.outerHTML}</td>
+                    <td>
+                        <div class="actions">
+                            <button type="button" class="action edit" data-action="edit" aria-label="Edit ${nama}"><i class="fa-solid fa-pen" aria-hidden="true"></i></button>
+                            <button type="button" class="action delete" data-action="delete" aria-label="Hapus ${nama}"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+                        </div>
+                    </td>
+                `;
+                row.dataset.index = editingIndex;
+                formMessage.textContent = `Data mahasiswa ${nama} berhasil diperbarui.`;
+            } else {
+                row.innerHTML = `
+                    <td>${studentBody.querySelectorAll('tr').length + 1}</td>
+                    <td>${nim}</td>
+                    <td>${nama}</td>
+                    <td>${jurusan}</td>
+                    <td>${email}</td>
+                    <td>${statusBadge.outerHTML}</td>
+                    <td>
+                        <div class="actions">
+                            <button type="button" class="action edit" data-action="edit" aria-label="Edit ${nama}"><i class="fa-solid fa-pen" aria-hidden="true"></i></button>
+                            <button type="button" class="action delete" data-action="delete" aria-label="Hapus ${nama}"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+                        </div>
+                    </td>
+                `;
+                row.dataset.index = studentBody.querySelectorAll('tr').length;
+                studentBody.appendChild(row);
+                formMessage.textContent = `Data mahasiswa ${nama} berhasil ditambahkan.`;
+            }
+
+            refreshRowIndexes();
+            form.reset();
+            editingIndex = null;
+            form.querySelector('button[type="submit"]').innerHTML = '<i class="fa-solid fa-floppy-disk" aria-hidden="true"></i> Simpan';
+            formMessage.classList.add('show');
+            updateStats();
+            renderTable(searchInput.value);
+        });
+
+        studentBody.addEventListener('click', function (event) {
+            const button = event.target.closest('button');
+            if (!button) return;
+
+            const row = button.closest('tr');
+            const cells = row.querySelectorAll('td');
+            const action = button.dataset.action;
+
+            if (action === 'delete') {
+                const name = cells[2].textContent.trim();
+                row.remove();
+                formMessage.textContent = `Data mahasiswa ${name} berhasil dihapus.`;
+                formMessage.classList.add('show');
+
+                refreshRowIndexes();
+                updateStats();
+                renderTable(searchInput.value);
+                return;
+            }
+
+            if (action === 'edit') {
+                editingIndex = Number(row.dataset.index);
+                document.getElementById('nim').value = cells[1].textContent.trim();
+                document.getElementById('nama').value = cells[2].textContent.trim();
+                document.getElementById('jurusan').value = cells[3].textContent.trim();
+                document.getElementById('email').value = cells[4].textContent.trim();
+                document.getElementById('status').value = cells[5].textContent.trim();
+                form.querySelector('button[type="submit"]').innerHTML = '<i class="fa-solid fa-pen" aria-hidden="true"></i> Update';
+                formMessage.textContent = 'Silakan ubah data lalu simpan.';
+                formMessage.classList.add('show');
+                document.getElementById('nim').focus();
+            }
+        });
+
+        searchInput.addEventListener('input', function () {
+            renderTable(searchInput.value);
+        });
+
+        btnSearch.addEventListener('click', function () {
+            renderTable(searchInput.value);
+        });
+
+        btnBatal.addEventListener('click', function () {
+            editingIndex = null;
+            form.querySelector('button[type="submit"]').innerHTML = '<i class="fa-solid fa-floppy-disk" aria-hidden="true"></i> Simpan';
+            formMessage.textContent = 'Form dibatalkan.';
+            formMessage.classList.add('show');
+        });
+
+        updateStats();
+        renderTable();
+    </script>
+</body>
+</html>
